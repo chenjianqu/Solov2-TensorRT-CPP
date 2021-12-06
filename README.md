@@ -25,7 +25,9 @@ download,and run it successful
 **2. Export the ONNX model fron original model**  
 
 
-before export , You have to modify some parts of the original SOLOv2 first:  
+**you can follow with [SOLOv2.tensorRT](https://github.com/zhangjinsong3/SOLOv2.tensorRT). **, 
+
+that is:before export , You have to modify some parts of the original SOLOv2 first:  
 
 2.1. modify `SOLO-master/mmdet/models/anchor_heads/solov2_head.py:154:0`：
 ```
