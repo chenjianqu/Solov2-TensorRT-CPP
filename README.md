@@ -120,12 +120,12 @@ cd ..
 ```
 
 
-**4. run the demo**
+**4. run the demo**   
 if you have download the KITTI dataset, run:
 ```
 ./build/InstanceSegment ./config/config.yaml
-```
-
+```  
+ 
 but if you not , and just want run at a image, set `config.yaml` with right image path `WARN_UP_IMAGE_PATH`, then run :
 ```
 ./build/demo ./config/config.yaml
