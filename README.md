@@ -1,5 +1,6 @@
 # Solov2-TensorRT-CPP
-in this repo, we  deployed SOLOv2 to TensorRT with C++.
+in this repo, we  deployed SOLOv2 to TensorRT with C++.   
+See the video:https://www.bilibili.com/video/BV1rQ4y1m7mx
 
 ## Requirements
 * Ubuntu 16.04/18.04/20.04
