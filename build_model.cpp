@@ -102,8 +102,25 @@ int Build()
 }
 
 
-int main(int argc,char** argv)
+
+int main(int argc, char **argv)
 {
+    if(argc != 2){
+        cerr<<"please input: [config file]"<<endl;
+        return 1;
+    }
+    string config_file = argv[1];
+    fmt::print("config_file:{}\n",argv[1]);
+
+    try{
+        Config cfg(config_file);
+    }
+    catch(std::runtime_error &e){
+        sgLogger->critical(e.what());
+        cerr<<e.what()<<endl;
+        return -1;
+    }
+
     return Build();
 }
 
