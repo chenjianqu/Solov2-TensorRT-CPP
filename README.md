@@ -81,10 +81,10 @@ image_height: 370
 
 
 # the position of exported ONNX model
-onnx_path: ""  
+onnx_path: "xxxx/SOLOv2_light_R34.onnx"  
 
 # save  tensorrt model to:
-serialize_path: "/home/chen/ws/dynamic_ws/src/dynamic_vins/weights/tensorrt_model_1152x384.bin"
+serialize_path: "xxx/tensorrt_model_1152x384.bin"
 
 # solo parameters
 SOLO_NMS_PRE: 500
@@ -96,13 +96,13 @@ SOLO_SCORE_THR: 0.1
 SOLO_MASK_THR: 0.5
 SOLO_UPDATE_THR: 0.2
 
-segmentor_log_path: "/home/chen/CLionProjects/InstanceSegment/log/segmentor_log.txt"
+segmentor_log_path: "xxx/log/segmentor_log.txt"
 segmentor_log_level: "debug"
 segmentor_log_flush: "debug"
 
 # test img dir
-DATASET_DIR: "/media/chen/EC4A17F64A17BBF0/datasets/kitti/odometry/colors/07/image_2/"
-WARN_UP_IMAGE_PATH: "/home/chen/CLionProjects/InstanceSegment/config/kitti.png"
+DATASET_DIR: "xxx/kitti/odometry/colors/07/image_2/"
+WARN_UP_IMAGE_PATH: "xxx/kitti.png"
 ```
 and then,compile the CMake project:
 ```
@@ -121,7 +121,7 @@ cd ..
 
 
 **4. run the demo**   
-if you have download the KITTI dataset, run:
+if you have the KITTI dataset,  set `config.yaml` with right  path `DATASET_DIR` ,run:
 ```
 ./build/InstanceSegment ./config/config.yaml
 ```  
