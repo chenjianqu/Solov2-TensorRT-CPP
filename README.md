@@ -17,10 +17,14 @@ in this repo, we  deployed SOLOv2 to TensorRT with C++.
 
 ## Getting Started
 
-**1. Install Solov2 from [SOLO](https://github.com/wxinlong/solo/)**
+**1. Install Solov2 from [SOLO](https://github.com/wxinlong/solo/)**  
+
+
 download,and run it successful
 
-**2. Export the ONNX model fron original model**
+**2. Export the ONNX model fron original model**  
+
+
 before export , You have to modify some parts of the original SOLOv2 first:  
 
 2.1. modify `SOLO-master/mmdet/models/anchor_heads/solov2_head.py:154:0`：
@@ -52,7 +56,8 @@ python onnx_exporter.py ../configs/solov2/solov2_light_448_r34_fpn_8gpu_3x.py ..
 
 
 
-**3. build the tensorrt model**
+**3. build the tensorrt model**   
+
 
 first edit the config file:`config.yaml`
 modify the item:
