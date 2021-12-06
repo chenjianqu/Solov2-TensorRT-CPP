@@ -6,7 +6,7 @@ in this repo, we  deployed SOLOv2 to TensorRT with C++.
 * Cuda10.2
 * Cudnn8
 * TensorRT8.0.1
-* OpenCV 3.4 complie with CUDA
+* OpenCV 3.4
 * Libtorch 1.8.2
 * CMake 3.20
 
@@ -20,14 +20,14 @@ in this repo, we  deployed SOLOv2 to TensorRT with C++.
 **1. Install Solov2 from [SOLO](https://github.com/wxinlong/solo/)**  
 
 
-download,and run it successful
+download,and run it successfully
 
 **2. Export the ONNX model fron original model**  
 
 
-**you can follow with [SOLOv2.tensorRT](https://github.com/zhangjinsong3/SOLOv2.tensorRT). **, 
+**you can follow with ** [SOLOv2.tensorRT](https://github.com/zhangjinsong3/SOLOv2.tensorRT). 
 
-that is:before export , You have to modify some parts of the original SOLOv2 first:  
+That is, before export, you have to modify some parts of the original SOLOv2 first:  
 
 2.1. modify `SOLO-master/mmdet/models/anchor_heads/solov2_head.py:154:0`：
 ```
@@ -73,8 +73,7 @@ python onnx_exporter.py ../configs/solov2/solov2_light_448_r34_fpn_8gpu_3x.py ..
 **3. build the tensorrt model**   
 
 
-first edit the config file:`config.yaml`
-modify the item:
+Firstly edit the config file:`config.yaml`   
 ```
 image_width: 1226
 image_height: 370
