@@ -48,7 +48,17 @@ x = x.expand([1, 1, -1, -1])
 ```
 
 2.2 `single_stage_ins.py`
-in the function of forward_dummy(), add the forward_dummy of mask.
+in the function of forward_dummy(), add the forward_dummy of mask, such as :
+```
+def forward_dummy(self, img):
+        x = self.extract_feat(img)
+        outs = self.bbox_head(x)
+        if self.with_mask_feat_head:
+            mask_feat_pred = self.mask_feat_head(
+                x[self.mask_feat_head.start_level:self.mask_feat_head.end_level + 1])
+            outs = (outs[0], outs[1], mask_feat_pred)
+        return outs
+```
 
 2.3 export onnx model
 move the `onnx_exporter.py` to the `SOLO/demo/`, then run
