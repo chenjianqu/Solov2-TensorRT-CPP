@@ -17,11 +17,12 @@ in this repo, we  deployed SOLOv2 to TensorRT with C++.
 
 ## Getting Started
 
-1. Install Solov2 from <https://github.com/wxinlong/solo/>
+**1. Install Solov2 from [SOLO](https://github.com/wxinlong/solo/)**
 download,and run it successful
 
-2. Export the ONNX model fron original model
-before export , You have to modify some parts of the original SOLOv2 first:
+**2. Export the ONNX model fron original model**
+before export , You have to modify some parts of the original SOLOv2 first:  
+
 2.1. modify `SOLO-master/mmdet/models/anchor_heads/solov2_head.py:154:0`：
 ```
 #Modify for onnx export, frozen the input size = 800x800, batch size = 1
@@ -46,11 +47,13 @@ x = x.expand([1, 1, -1, -1])
 in the function of forward_dummy(), add the forward_dummy of mask.
 
 2.3 export onnx model
-#kitti的大小
+#kitti
 python onnx_exporter.py ../configs/solov2/solov2_light_448_r34_fpn_8gpu_3x.py ../weights/SOLOv2_light_R34.onnx --checkpoint ../checkpoints/SOLOv2_LIGHT_448_R34_3x.pth --shape 384 1152
 
 
-3. build the tensorrt model
+
+**3. build the tensorrt model**
+
 first edit the config file:`config.yaml`
 modify the item:
 ```
@@ -87,7 +90,9 @@ and then,compile the CMake project, run
 <BUILD_DIR>/build_model <PROJECT_MODEL>/config/config.yaml
 ```
 
-4. run the demo
+
+
+**4. run the demo**
 ```
 <BUILD_DIR>/InstanceSegment <PROJECT_MODEL>/config/config.yaml
 ```
