@@ -51,9 +51,11 @@ x = x.expand([1, 1, -1, -1])
 in the function of forward_dummy(), add the forward_dummy of mask.
 
 2.3 export onnx model
-#kitti
+move the `onnx_exporter.py` to the `SOLO/demo/`, then run
+```
+#kitti size
 python onnx_exporter.py ../configs/solov2/solov2_light_448_r34_fpn_8gpu_3x.py ../weights/SOLOv2_light_R34.onnx --checkpoint ../checkpoints/SOLOv2_LIGHT_448_R34_3x.pth --shape 384 1152
-
+```
 
 
 **3. build the tensorrt model**   
