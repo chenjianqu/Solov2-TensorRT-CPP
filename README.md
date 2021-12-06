@@ -102,15 +102,23 @@ segmentor_log_flush: "debug"
 DATASET_DIR: "/media/chen/EC4A17F64A17BBF0/datasets/kitti/odometry/colors/07/image_2/"
 WARN_UP_IMAGE_PATH: "/home/chen/CLionProjects/InstanceSegment/config/kitti.png"
 ```
-and then,compile the CMake project, run
+and then,compile the CMake project:
 ```
-<BUILD_DIR>/build_model <PROJECT_MODEL>/config/config.yaml
+mkdir build && cd build
+
+cmake ..
+
+make -j10
 ```
 
+last, build the tensorrt model:
+```
+./build/build_model ./config/config.yaml
+```
 
 
 **4. run the demo**
 ```
-<BUILD_DIR>/InstanceSegment <PROJECT_MODEL>/config/config.yaml
+./build/InstanceSegment ./config/config.yaml
 ```
 
