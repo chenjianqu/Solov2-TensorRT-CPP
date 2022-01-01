@@ -1,3 +1,12 @@
+/*******************************************************
+ * Copyright (C) 2022, Chen Jianqu, Shanghai University
+ *
+ * This file is part of Solov2-TensorRT-CPP.
+ *
+ * Licensed under the MIT License;
+ * you may not use this file except in compliance with the License.
+ *******************************************************/
+
 #ifndef INSTANCE_SEGMENT_PARAMETER_H
 #define INSTANCE_SEGMENT_PARAMETER_H
 
