@@ -26,7 +26,7 @@ download,and run it successfully
 **2. Export the ONNX model fron original model**  
 
 
-**you can follow with ** [SOLOv2.tensorRT](https://github.com/zhangjinsong3/SOLOv2.tensorRT). 
+**you can follow with** [SOLOv2.tensorRT](https://github.com/zhangjinsong3/SOLOv2.tensorRT). 
 
 That is, before export, you have to modify some parts of the original SOLOv2 first:  
 
@@ -50,7 +50,7 @@ x = x.expand([1, 1, -1, -1])
 # x = x.expand([ins_feat.shape[0], 1, -1, -1])
 ```
 
-2.2 `single_stage_ins.py`
+2.2 `single_stage_ins.py`  
 in the function of forward_dummy(), add the forward_dummy of mask, such as :
 ```
 def forward_dummy(self, img):
@@ -63,7 +63,7 @@ def forward_dummy(self, img):
         return outs
 ```
 
-2.3 export onnx model
+2.3 export onnx model  
 move the `onnx_exporter.py` to the `SOLO/demo/`, then run
 ```
 #kitti size
@@ -71,7 +71,7 @@ python onnx_exporter.py ../configs/solov2/solov2_light_448_r34_fpn_8gpu_3x.py ..
 ```
 
 
-**3. build the tensorrt model**   
+**3. build the tensorrt model**     
 
 
 Firstly edit the config file:`config.yaml`   
