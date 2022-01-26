@@ -11,18 +11,21 @@
 #define INSTANCE_SEGMENT_BUFFER_H
 
 #include <string>
+#include <vector>
 #include <memory>
 #include <NvInfer.h>
+#include <torch/torch.h>
 
-
-class MyBuffer{
+struct MyBuffer{
 public:
     using Ptr = std::shared_ptr<MyBuffer>;
     explicit MyBuffer(nvinfer1::ICudaEngine& engine);
     ~MyBuffer();
 
-    void cpyInputToGPU();
-    void cpyOutputToCPU();
+    void CpyInputToGPU();
+    void CpyOutputToCPU();
+
+    void CudaToTensor(std::vector<torch::Tensor> &inst);
 
     cudaStream_t stream{};
     int binding_num;
@@ -34,4 +37,4 @@ public:
 };
 
 
-#endif //DYNAMIC_VINS_BUFFER_H
+#endif

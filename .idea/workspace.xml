@@ -4,7 +4,7 @@
     <generated>
       <config projectName="Solov2-TensorRT-CPP" targetName="build_model" />
       <config projectName="Solov2-TensorRT-CPP" targetName="demo" />
-      <config projectName="Solov2-TensorRT-CPP" targetName="InstanceSegment" />
+      <config projectName="Solov2-TensorRT-CPP" targetName="segment" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -13,7 +13,36 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65b3c0df-a778-4d77-b840-fc84b302f314" name="Changes" comment="" />
+    <list default="true" id="65b3c0df-a778-4d77-b840-fc84b302f314" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/Solov2-TensorRT-CPP.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/ErrorRecorder.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/TensorRtSample/ErrorRecorder.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/buffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/buffer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/buffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/buffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/common.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/TensorRtSample/common.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/half.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/TensorRtSample/half.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/infer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/infer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/infer.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/infer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/logger.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/TensorRtSample/logger.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/logger.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/TensorRtSample/logger.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/logging.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/TensorRtSample/logging.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/parameters.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/parameters.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/parameters.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/parameters.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/pipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/pipeline.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/pipeline.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/pipeline.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/solo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/solo.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/solo.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/solo.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/utils.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InstanceSegment/utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/utils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build_model.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/build_model.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/demo.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +55,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="235eIJOC9kpC9DKkYGapjdDNb5F" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -35,20 +72,21 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../InstanceSegment" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
-  <component name="RunManager" selected="CMake Application.build_model">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="InstanceSegment" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Solov2-TensorRT-CPP" TARGET_NAME="InstanceSegment" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Solov2-TensorRT-CPP" RUN_TARGET_NAME="InstanceSegment">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/InstanceSegment/TensorRtSample" />
+    </key>
+  </component>
+  <component name="RunManager" selected="CMake Application.segment">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -63,6 +101,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="segment" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Solov2-TensorRT-CPP" TARGET_NAME="segment" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Solov2-TensorRT-CPP" RUN_TARGET_NAME="segment">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -71,7 +114,7 @@
     <list>
       <item itemvalue="CMake Application.build_model" />
       <item itemvalue="CMake Application.demo" />
-      <item itemvalue="CMake Application.InstanceSegment" />
+      <item itemvalue="CMake Application.segment" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -82,7 +125,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1641028294137</updated>
-      <workItem from="1641028295483" duration="904000" />
+      <workItem from="1641028295483" duration="1960000" />
+      <workItem from="1641989366840" duration="182000" />
+      <workItem from="1643171863477" duration="604000" />
+      <workItem from="1643194977845" duration="10596000" />
+      <workItem from="1643212471672" duration="147000" />
     </task>
     <servers />
   </component>

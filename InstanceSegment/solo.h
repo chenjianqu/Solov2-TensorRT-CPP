@@ -22,18 +22,13 @@ class Solov2 {
 public:
     using Ptr=std::shared_ptr<Solov2>;
     Solov2(){
-        size_trans=torch::from_blob(SOLO_NUM_GRIDS.data(),{int(SOLO_NUM_GRIDS.size())},torch::kFloat).clone();
-        size_trans=size_trans.pow(2).cumsum(0);
+        size_trans_=torch::from_blob(kSoloNumGrids.data(), {int(kSoloNumGrids.size())}, torch::kFloat).clone();
+        size_trans_=size_trans_.pow(2).cumsum(0);
     }
     static torch::Tensor MatrixNMS(torch::Tensor &seg_masks,torch::Tensor &cate_labels,torch::Tensor &cate_scores,torch::Tensor &sum_mask);
-
-    void getSegTensor(std::vector<torch::Tensor> &outputs,ImageInfo& img_info,torch::Tensor &mask_tensor,std::vector<InstInfo> &insts);
-
-    bool isResized{true};
-    bool output_split_mask{true};
-
+    void GetSegTensor(std::vector<torch::Tensor> &outputs, ImageInfo& img_info, torch::Tensor &mask_tensor, std::vector<InstInfo> &insts);
 private:
-    torch::Tensor size_trans;
+    torch::Tensor size_trans_;
 };
 
 

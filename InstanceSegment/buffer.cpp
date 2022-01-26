@@ -7,13 +7,12 @@
  * you may not use this file except in compliance with the License.
  *******************************************************/
 
-
+#include "buffer.h"
 #include <spdlog/logger.h>
 #include <cuda_runtime_api.h>
-
-#include "buffer.h"
-#include "common.h"
+#include <optional>
 #include "parameters.h"
+#include "utils.h"
 
 
 MyBuffer::MyBuffer(nvinfer1::ICudaEngine& engine){
@@ -38,21 +37,20 @@ MyBuffer::~MyBuffer(){
     cudaStreamDestroy(stream);
     for(int i=0;i<binding_num;++i){
         if(auto s=cudaFree(gpu_buffer[i]);s!=cudaSuccess)
-            sgLogger->error("cudaFree failed, status:{}",s);
+            ErrorLog("cudaFree failed, status:{}",s);
         delete cpu_buffer[i];
     }
     delete[] cpu_buffer;
 }
 
 
-void MyBuffer::cpyInputToGPU(){
+void MyBuffer::CpyInputToGPU(){
     if(auto status = cudaMemcpyAsync(gpu_buffer[0], cpu_buffer[0], size[0], cudaMemcpyHostToDevice, stream);
         status != cudaSuccess)
         throw std::runtime_error(fmt::format("cudaMemcpyAsync failed, status:{}",status));
-
 }
 
-void MyBuffer::cpyOutputToCPU(){
+void MyBuffer::CpyOutputToCPU(){
     for(int i=1;i<binding_num;++i){
         if(auto status = cudaMemcpyAsync(cpu_buffer[i],gpu_buffer[i], size[i], cudaMemcpyDeviceToHost, stream);
         status != cudaSuccess)
@@ -60,4 +58,46 @@ void MyBuffer::cpyOutputToCPU(){
     }
     if(auto status=cudaStreamSynchronize(stream);status != cudaSuccess)
         throw std::runtime_error(fmt::format("cudaStreamSynchronize failed, status:{}",status));
+}
+
+/**
+ * 采用这种方式来保证 输出张量的顺序与kTensorQueueShape一致，而不是根据名字来确定顺序
+ * @param c
+ * @param h
+ * @param w
+ * @return
+ */
+std::optional<int> GetQueueShapeIndex(int c, int h, int w)
+{
+    int index=-1;
+    for(int i=0;i< (int)kTensorQueueShape.size();++i){
+        if(c==kTensorQueueShape[i][1] && h==kTensorQueueShape[i][2] && w==kTensorQueueShape[i][3]){
+            index=i;
+            break;
+        }
+    }
+    if(index==-1)
+        return std::nullopt;
+    else
+        return index;
+}
+
+void MyBuffer::CudaToTensor(std::vector<torch::Tensor> &inst)
+{
+    inst.resize(kTensorQueueShape.size());
+    auto opt=torch::TensorOptions().device(torch::kCUDA).dtype(torch::kFloat);
+    for(int i=1; i < binding_num; ++i){
+        torch::Tensor tensor=torch::from_blob(
+                gpu_buffer[i],
+                {dims[i].d[0], dims[i].d[1], dims[i].d[2], dims[i].d[3]},
+                opt);
+        if(std::optional<int> index = GetQueueShapeIndex(
+                    dims[i].d[1], dims[i].d[2], dims[i].d[3]);index){
+            inst[*index] = tensor.to(torch::kCUDA);
+        }
+        else{
+            throw std::runtime_error(fmt::format("GetQueueShapeIndex failed:{}",
+                                                 Dims2Str(dims[i])));
+        }
+    }
 }

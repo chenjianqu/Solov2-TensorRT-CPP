@@ -9,7 +9,7 @@
 
 #include "utils.h"
 
-void draw_text(cv::Mat &img, const std::string &str, const cv::Scalar &color, const cv::Point& pos,  float scale, int thickness,bool reverse) {
+void DrawText(cv::Mat &img, const std::string &str, const cv::Scalar &color, const cv::Point& pos, float scale, int thickness, bool reverse) {
     auto t_size = cv::getTextSize(str, cv::FONT_HERSHEY_SIMPLEX, scale, thickness, nullptr);
     cv::Point bottom_left, upper_right;
     if (reverse) {
@@ -24,16 +24,15 @@ void draw_text(cv::Mat &img, const std::string &str, const cv::Scalar &color, co
     cv::putText(img, str, bottom_left, cv::FONT_HERSHEY_SIMPLEX, scale, cv::Scalar(255, 255, 255),thickness);
 }
 
-void draw_bbox(cv::Mat &img, const cv::Rect2f& bbox, const std::string &label, const cv::Scalar &color) {
+void DrawBbox(cv::Mat &img, const cv::Rect2f& bbox, const std::string &label, const cv::Scalar &color) {
     cv::rectangle(img, bbox, color);
     if (!label.empty()) {
-        draw_text(img, label, color, bbox.tl());
+        DrawText(img, label, color, bbox.tl());
     }
 }
 
 
-
-float getBoxIoU(const cv::Point2f &box1_minPt, const cv::Point2f &box1_maxPt,
+float GetBoxIoU(const cv::Point2f &box1_minPt, const cv::Point2f &box1_maxPt,
                 const cv::Point2f &box2_minPt, const cv::Point2f &box2_maxPt){
 
     cv::Point2f center1 = (box1_minPt+box1_maxPt)/2.f;
@@ -60,7 +59,7 @@ float getBoxIoU(const cv::Point2f &box1_minPt, const cv::Point2f &box1_maxPt,
  * @param bb_gt
  * @return
  */
-float getBoxIoU(const cv::Rect2f &bb_test, const cv::Rect2f &bb_gt) {
+float GetBoxIoU(const cv::Rect2f &bb_test, const cv::Rect2f &bb_gt) {
     auto in = (bb_test & bb_gt).area();
     auto un = bb_test.area() + bb_gt.area() - in;
     if (un <  DBL_EPSILON)
@@ -69,7 +68,7 @@ float getBoxIoU(const cv::Rect2f &bb_test, const cv::Rect2f &bb_gt) {
 }
 
 
-cv::Scalar color_map(int64_t n) {
+cv::Scalar ColorMap(int64_t n) {
     auto bit_get = [](int64_t x, int64_t i) {
         return x & (1 << i);
     };

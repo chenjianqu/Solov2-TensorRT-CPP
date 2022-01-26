@@ -12,14 +12,11 @@
 
 #include <optional>
 #include <memory>
-
-#include "common.h"
+#include <NvInfer.h>
+#include "TensorRtSample/common.h"
 #include "pipeline.h"
 #include "solo.h"
 #include "buffer.h"
-
-#include <NvInfer.h>
-
 
 
 struct InferDeleter{
@@ -34,20 +31,17 @@ class Infer {
 public:
     using Ptr = std::shared_ptr<Infer>;
     Infer();
-    void forward_tensor(cv::Mat &img,torch::Tensor &mask_tensor,std::vector<InstInfo> &insts);
-    void visualizeResult(cv::Mat &input,cv::Mat &mask,std::vector<InstInfo> &insts);
-
+    void Forward(cv::Mat &img, torch::Tensor &mask_tensor, std::vector<InstInfo> &insts);
+    void VisualizeResult(cv::Mat &input,cv::Mat &mask,std::vector<InstInfo> &insts);
 private:
-    MyBuffer::Ptr buffer;
-    Pipeline::Ptr pipeline;
-    Solov2::Ptr solo;
-
-    std::unique_ptr<nvinfer1::IRuntime,InferDeleter> runtime;
-    std::shared_ptr<nvinfer1::ICudaEngine> engine;
-    std::unique_ptr<IExecutionContext, InferDeleter> context;
-
-    double infer_time{0};
+    MyBuffer::Ptr buffer_;
+    Pipeline::Ptr pipeline_;
+    Solov2::Ptr solo_;
+    std::unique_ptr<nvinfer1::IRuntime,InferDeleter> runtime_;
+    std::shared_ptr<nvinfer1::ICudaEngine> engine_;
+    std::unique_ptr<IExecutionContext, InferDeleter> context_;
+    double infer_time_{0};
 };
 
 
-#endif //
+#endif

@@ -13,13 +13,13 @@ See the video:https://www.bilibili.com/video/BV1rQ4y1m7mx
 * CMake 3.20
 
 ## Acknowledge
-[SOLO](https://github.com/wxinlong/solo/)
+[SOLO](https://github.com/wxinlong/solo_/)
 [SOLOv2.tensorRT](https://github.com/zhangjinsong3/SOLOv2.tensorRT)
 
 
 ## Getting Started
 
-**1. Install Solov2 from [SOLO](https://github.com/wxinlong/solo/)**  
+**1. Install Solov2 from [SOLO](https://github.com/wxinlong/solo_/)**  
 
 
 download,and run it successfully
@@ -73,21 +73,18 @@ python onnx_exporter.py ../configs/solov2/solov2_light_448_r34_fpn_8gpu_3x.py ..
 
 
 **3. build the tensorrt model**     
-
-
+  
 Firstly edit the config file:`config.yaml`   
 ```
-image_width: 1226
-image_height: 370
+%YAML:1.0
 
+IMAGE_WIDTH: 1226
+IMAGE_HEIGHT: 370
 
-# the position of exported ONNX model
-onnx_path: "xxxx/SOLOv2_light_R34.onnx"  
+#SOLO
+ONNX_PATH: "/home/chen/ws/dynamic_ws/src/dynamic_vins/weights/solo/SOLOv2_light_R34_1152x384_cuda102.onnx"
+SERIALIZE_PATH: "/home/chen/ws/dynamic_ws/src/dynamic_vins/weights/solo/tensorrt_model_1152x384.bin"
 
-# save  tensorrt model to:
-serialize_path: "xxx/tensorrt_model_1152x384.bin"
-
-# solo parameters
 SOLO_NMS_PRE: 500
 SOLO_MAX_PER_IMG: 100
 SOLO_NMS_KERNEL: "gaussian"
@@ -97,13 +94,12 @@ SOLO_SCORE_THR: 0.1
 SOLO_MASK_THR: 0.5
 SOLO_UPDATE_THR: 0.2
 
-segmentor_log_path: "xxx/log/segmentor_log.txt"
-segmentor_log_level: "debug"
-segmentor_log_flush: "debug"
+LOG_PATH: "./segmentor_log.txt"
+LOG_LEVEL: "debug"
+LOG_FLUSH: "debug"
 
-# test img dir
-DATASET_DIR: "xxx/kitti/odometry/colors/07/image_2/"
-WARN_UP_IMAGE_PATH: "xxx/kitti.png"
+DATASET_DIR: "/media/chen/EC4A17F64A17BBF0/datasets/kitti/odometry/colors/07/image_2/"
+WARN_UP_IMAGE_PATH: "/home/chen/CLionProjects/InstanceSegment/config/kitti.png"
 ```
 and then,compile the CMake project:
 ```
@@ -124,10 +120,10 @@ cd ..
 **4. run the demo**   
 if you have the KITTI dataset,  set `config.yaml` with right  path `DATASET_DIR` ,run:
 ```
-./build/InstanceSegment ./config/config.yaml
+./build/segment ./config/config.yaml
 ```  
  
-but if you not , and just want run at a image, set `config.yaml` with right image path `WARN_UP_IMAGE_PATH`, then run :
+but if you not , and just want run at a image, set `config.yaml` with right image path `kWarnUpImagePath`, then run :
 ```
 ./build/demo ./config/config.yaml
 ```
