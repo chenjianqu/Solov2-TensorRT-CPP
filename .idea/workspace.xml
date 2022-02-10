@@ -13,36 +13,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65b3c0df-a778-4d77-b840-fc84b302f314" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Solov2-TensorRT-CPP.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/ErrorRecorder.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/TensorRtSample/ErrorRecorder.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/buffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/buffer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/buffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/buffer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/common.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/TensorRtSample/common.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/half.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/TensorRtSample/half.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/infer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/infer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/infer.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/infer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/logger.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/TensorRtSample/logger.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/logger.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/TensorRtSample/logger.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/logging.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/TensorRtSample/logging.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/parameters.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/parameters.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/parameters.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/parameters.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/pipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/pipeline.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/pipeline.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/pipeline.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/solo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/solo.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/solo.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/solo.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/utils.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InstanceSegment/utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/InstanceSegment/utils.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build_model.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/build_model.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/demo.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="65b3c0df-a778-4d77-b840-fc84b302f314" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -129,7 +100,7 @@
       <workItem from="1641989366840" duration="182000" />
       <workItem from="1643171863477" duration="604000" />
       <workItem from="1643194977845" duration="10596000" />
-      <workItem from="1643212471672" duration="147000" />
+      <workItem from="1643212471672" duration="468000" />
     </task>
     <servers />
   </component>

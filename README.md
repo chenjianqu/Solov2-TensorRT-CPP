@@ -1,6 +1,5 @@
 # Solov2-TensorRT-CPP
-in this repo, we  deployed SOLOv2 to TensorRT with C++.   
-See the video:https://www.bilibili.com/video/BV1rQ4y1m7mx
+in this repo, we  deployed SOLOv2 to TensorRT with C++.   See the [video](https://www.bilibili.com/video/BV1rQ4y1m7mx).
 ![solov2_cpp](https://github.com/chenjianqu/Solov2-TensorRT-CPP/blob/main/config/solov2_cpp.png)
 
 ## Requirements
@@ -19,19 +18,19 @@ See the video:https://www.bilibili.com/video/BV1rQ4y1m7mx
 
 ## Getting Started
 
-**1. Install Solov2 from [SOLO](https://github.com/wxinlong/solo_/)**  
+**1. Install Solov2 from [SOLO](https://github.com/wxinlong/solo/)**  
 
 
-download,and run it successfully
+Download,and run it successfully
 
-**2. Export the ONNX model fron original model**  
+**2. Export the ONNX model from original model**  
 
-
-**you can follow with** [SOLOv2.tensorRT](https://github.com/zhangjinsong3/SOLOv2.tensorRT). 
+**You can follow with** [SOLOv2.tensorRT](https://github.com/zhangjinsong3/SOLOv2.tensorRT). 
 
 That is, before export, you have to modify some parts of the original SOLOv2 first:  
 
-2.1. modify `SOLO-master/mmdet/models/anchor_heads/solov2_head.py:154:0`：
+2.1. Modify `SOLO-master/mmdet/models/anchor_heads/solov2_head.py:154:0`：
+
 ```
 #Modify for onnx export, frozen the input size = 800x800, batch size = 1
 size = {0: 100, 1: 100, 2: 50, 3: 25, 4: 25}
@@ -52,7 +51,8 @@ x = x.expand([1, 1, -1, -1])
 ```
 
 2.2 `single_stage_ins.py`  
-in the function of forward_dummy(), add the forward_dummy of mask, such as :
+In the function named `forward_dummy()`, add the forward_dummy of mask, such as :
+
 ```
 def forward_dummy(self, img):
         x = self.extract_feat(img)
@@ -64,8 +64,9 @@ def forward_dummy(self, img):
         return outs
 ```
 
-2.3 export onnx model  
-move the `onnx_exporter.py` to the `SOLO/demo/`, then run
+2.3 Export onnx model  
+Move the `onnx_exporter.py` to the `SOLO/demo/`, then run
+
 ```
 #kitti size
 python onnx_exporter.py ../configs/solov2/solov2_light_448_r34_fpn_8gpu_3x.py ../weights/SOLOv2_light_R34.onnx --checkpoint ../checkpoints/SOLOv2_LIGHT_448_R34_3x.pth --shape 384 1152
@@ -73,8 +74,8 @@ python onnx_exporter.py ../configs/solov2/solov2_light_448_r34_fpn_8gpu_3x.py ..
 
 
 **3. build the tensorrt model**     
-  
-Firstly edit the config file:`config.yaml`   
+
+First, edit the config file:`config.yaml`   
 ```
 %YAML:1.0
 
@@ -110,22 +111,21 @@ cmake ..
 make -j10
 ```
 
-last, build the tensorrt model:
+Finally, build the tensorrt model:
 ```
 cd ..
 ./build/build_model ./config/config.yaml
 ```
 
-
 **4. run the demo**   
 if you have the KITTI dataset,  set `config.yaml` with right  path `DATASET_DIR` ,run:
+
 ```
 ./build/segment ./config/config.yaml
-```  
- 
-but if you not , and just want run at a image, set `config.yaml` with right image path `kWarnUpImagePath`, then run :
+```
+
+if you not , and just want run at a image, set `config.yaml` with right image path `kWarnUpImagePath`, then run :
 ```
 ./build/demo ./config/config.yaml
 ```
-
 
