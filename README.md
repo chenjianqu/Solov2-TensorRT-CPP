@@ -41,6 +41,8 @@ y_range = torch.linspace(-1, 1, feat_h, device=ins_kernel_feat.device)
 y, x = torch.meshgrid(y_range, x_range)
 y = y.expand([1, 1, -1, -1])
 x = x.expand([1, 1, -1, -1])
+coord_feat = torch.cat([x, y], 1)
+ins_kernel_feat = torch.cat([ins_kernel_feat, coord_feat], 1)
 
 # Origin from SOLO
 # x_range = torch.linspace(-1, 1, ins_feat.shape[-1], device=ins_feat.device)
