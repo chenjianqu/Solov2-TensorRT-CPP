@@ -67,7 +67,7 @@ def forward_dummy(self, img):
 ```
 
 2.3 Export onnx model  
-Move the `onnx_exporter.py` to the `SOLO/demo/`, then run
+Move the `onnx_exporter.py` and `common.py` to the `SOLO/demo/`, then run
 
 ```
 #kitti size
