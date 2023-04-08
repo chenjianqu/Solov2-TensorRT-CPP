@@ -33,7 +33,15 @@ Download,and run it successfully
 
 **2. Export the ONNX model from original model**  
 
-**You can follow with** [SOLOv2.tensorRT](https://github.com/zhangjinsong3/SOLOv2.tensorRT). 
+* **You can follow with** [SOLOv2.tensorRT](https://github.com/zhangjinsong3/SOLOv2.tensorRT). 
+
+
+* Use a pre-exported model
+
+[baidudisk](https://pan.baidu.com/s/1GNQROWqASUoyjUsFPGnRHg), Fetch Code:qdsm
+
+
+* Export models by yourself
 
 That is, before export, you have to modify some parts of the original SOLOv2 first:  
 
