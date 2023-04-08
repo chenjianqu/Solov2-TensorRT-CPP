@@ -2,7 +2,10 @@
 in this repo, we  deployed SOLOv2 to TensorRT with C++.   See the [video](https://www.bilibili.com/video/BV1rQ4y1m7mx).
 ![solov2_cpp](https://github.com/chenjianqu/Solov2-TensorRT-CPP/blob/main/config/solov2_cpp.png)
 
+
+
 ## Requirements
+
 * Ubuntu 16.04/18.04/20.04
 * Cuda10.2
 * Cudnn8
@@ -11,17 +14,22 @@ in this repo, we  deployed SOLOv2 to TensorRT with C++.   See the [video](https:
 * Libtorch 1.8.2
 * CMake 3.20
 
+
+
 ## Acknowledge
+
 [SOLO](https://github.com/wxinlong/solo_/)
 [SOLOv2.tensorRT](https://github.com/zhangjinsong3/SOLOv2.tensorRT)
+
 
 
 ## Getting Started
 
 **1. Install Solov2 from [SOLO](https://github.com/wxinlong/solo/)**  
 
-
 Download,and run it successfully
+
+
 
 **2. Export the ONNX model from original model**  
 
@@ -29,9 +37,22 @@ Download,and run it successfully
 
 That is, before export, you have to modify some parts of the original SOLOv2 first:  
 
-2.1. Modify `SOLO-master/mmdet/models/anchor_heads/solov2_head.py:154:0`：
+* 2.1. Modify `SOLO-master/mmdet/models/anchor_heads/solov2_head.py:154:0`：
 
+Original code of `solov2_head.py` is:
+
+```python
+# Origin from SOLO
+x_range = torch.linspace(-1, 1, ins_feat.shape[-1], device=ins_feat.device)
+y_range = torch.linspace(-1, 1, ins_feat.shape[-2], device=ins_feat.device)
+y, x = torch.meshgrid(y_range, x_range)
+y = y.expand([ins_feat.shape[0], 1, -1, -1])
+x = x.expand([ins_feat.shape[0], 1, -1, -1])
 ```
+
+change to:
+
+```python
 #Modify for onnx export, frozen the input size = 800x800, batch size = 1
 size = {0: 100, 1: 100, 2: 50, 3: 25, 4: 25}
 feat_h, feat_w = ins_kernel_feat.shape[-2], ins_kernel_feat.shape[-1]
@@ -43,19 +64,15 @@ y = y.expand([1, 1, -1, -1])
 x = x.expand([1, 1, -1, -1])
 coord_feat = torch.cat([x, y], 1)
 ins_kernel_feat = torch.cat([ins_kernel_feat, coord_feat], 1)
-
-# Origin from SOLO
-# x_range = torch.linspace(-1, 1, ins_feat.shape[-1], device=ins_feat.device)
-# y_range = torch.linspace(-1, 1, ins_feat.shape[-2], device=ins_feat.device)
-# y, x = torch.meshgrid(y_range, x_range)
-# y = y.expand([ins_feat.shape[0], 1, -1, -1])
-# x = x.expand([ins_feat.shape[0], 1, -1, -1])
 ```
 
-2.2 `single_stage_ins.py`  
+
+
+* 2.2  Modify `SOLO-master/mmdet/models/detectors/single_stage_ins.py`  
+
 In the function named `forward_dummy()`, add the forward_dummy of mask, such as :
 
-```
+```python
 def forward_dummy(self, img):
         x = self.extract_feat(img)
         outs = self.bbox_head(x)
@@ -66,13 +83,38 @@ def forward_dummy(self, img):
         return outs
 ```
 
-2.3 Export onnx model  
+
+
+* 2.3 Modify `SOLO-master/mmdet/models/mask_heads/mask_feat_head.py`
+
+In line 108 of `mask_feat_head.py`, original code is:
+
+```python
+x_range = torch.linspace(-1, 1, input_feat.shape[-1], device=input_feat.device)
+y_range = torch.linspace(-1, 1, input_feat.shape[-2], device=input_feat.device)
+```
+
+change to:
+
+```python
+feat_h, feat_w = input_feat.shape[-2], input_feat.shape[-1]  # shape get tensor during onnx.export()
+feat_h, feat_w = int(feat_h.cpu().numpy() if isinstance(feat_h, torch.Tensor) else feat_h), \
+int(feat_w.cpu().numpy() if isinstance(feat_w, torch.Tensor) else feat_w)
+x_range = torch.linspace(-1, 1, feat_w, device=input_feat.device)
+y_range = torch.linspace(-1, 1, feat_h, device=input_feat.device)
+```
+
+
+
+* 2.4 Export onnx model  
+
 Move the `onnx_exporter.py` and `common.py` to the `SOLO/demo/`, then run
 
 ```
 #kitti size
 python onnx_exporter.py ../configs/solov2/solov2_light_448_r34_fpn_8gpu_3x.py ../weights/SOLOv2_light_R34.onnx --checkpoint ../checkpoints/SOLOv2_LIGHT_448_R34_3x.pth --shape 384 1152
 ```
+
 
 
 **3. build the tensorrt model**     
@@ -119,7 +161,10 @@ cd ..
 ./build/build_model ./config/config.yaml
 ```
 
+
+
 **4. run the demo**   
+
 if you have the KITTI dataset,  set `config.yaml` with right  path `DATASET_DIR` ,run:
 
 ```
